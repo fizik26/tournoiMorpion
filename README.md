@@ -1,3 +1,3 @@
 # TournoiMorpion
 
-Tournoi du jeu du morpion en JAVA réalisé aevc la bibliothèque graphique Swing.
+Tournoi du jeu du morpion en JAVA réalisé avec la bibliothèque graphique Swing.
