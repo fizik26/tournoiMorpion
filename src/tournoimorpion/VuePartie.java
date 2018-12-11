@@ -132,7 +132,10 @@ public class VuePartie extends Observable {
         this.fenetre.setVisible(true);
     }
     
-    public void rafraichir(Grille grilleJeu , Joueur j){
+    // joueurNonAction = joueur qui n'a pas fait l'action
+    // j = joueur ayant effectuer l'action ( le click )
+    // nous avons besoin de passer les deux joueurs pour connaître la couleur et le signe de chaque joueur lorsque nous rafraichissons la grille
+    public void rafraichir(Grille grilleJeu , Joueur j , Joueur joueurNonAction){
          pGrille.removeAll();
          Border lightgrayline = BorderFactory.createLineBorder(Color.LIGHT_GRAY,1);
          Font fontcochee= new Font("Arial", 2, 30);
@@ -155,13 +158,27 @@ public class VuePartie extends Observable {
             }else if (grilleJeu.getLescases()[x][y].getEtat()==EtatCase.X){
                 JLabel casE = new JLabel("X");
                 casE.setFont(fontcochee);
-                casE.setForeground(j.getCouleur().getcouleur());
+                
+                // si le signe du joueur qui a cliqué est X ( donc comme le signe de la case ), alors on assigne sa couleur au X
+                // sinon , on assigne la couleur de l'autre joueur car ça voudra dire que c'est l'autre joueur qui a le signe X et donc qui a précédemment cliqué sur cette case où il y a le X
+                if(j.getSigne().equals(Signe.X)) {
+                    casE.setForeground(j.getCouleur().getcouleur());                	
+                } else {
+                	casE.setForeground(joueurNonAction.getCouleur().getcouleur());
+                }
                 casE.setBorder(lightgrayline);
                 pGrille.add(casE);   
             }else if (grilleJeu.getLescases()[x][y].getEtat()==EtatCase.O){
                 JLabel casE = new JLabel("O");
                 casE.setFont(fontcochee);
-                casE.setForeground(j.getCouleur().getcouleur());
+                
+                // si le signe du joueur qui a cliqué est O ( donc comme le signe de la case ), alors on assigne sa couleur au O
+                // sinon , on assigne la couleur de l'autre joueur car ça voudra dire que c'est l'autre joueur qui a le signe O et donc qui a précédemment cliqué sur cette case où il y a le O
+                if(j.getSigne().equals(Signe.O)) {
+                    casE.setForeground(j.getCouleur().getcouleur());                	
+                } else {
+                	casE.setForeground(joueurNonAction.getCouleur().getcouleur());
+                }
                 casE.setBorder(lightgrayline);
                 pGrille.add(casE);   
             

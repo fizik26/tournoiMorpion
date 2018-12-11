@@ -81,7 +81,19 @@ public class ObservateurIni implements Observer{
            listeJ.get(0).setCouleur(messageM.getChoixcouleur1());
            listeJ.get(0).setSigne(messageM.getChoixsigne1());
            listeJ.get(1).setCouleur(messageM.getChoixcouleur2());
-           listeJ.get(1).setSigne(messageM.getChoixsigne2());
+           
+           // si les deux joueurs ont le même signe, on assigne au deuxième le signe que le premier n'a pas pris
+           // sinon, faire comme avant et juste récupérer le signe choisi
+           if(messageM.getChoixsigne1().equals(messageM.getChoixsigne2())) {
+        	   if(messageM.getChoixsigne1().equals(Signe.X)) {
+        		   listeJ.get(1).setSigne(Signe.O);
+        	   } else {
+        		   listeJ.get(1).setSigne(Signe.X);
+        	   }
+           } else {
+        	   listeJ.get(1).setSigne(messageM.getChoixsigne2());
+           }
+           
            vmanche.close();
            
            g1 = new Grille();
@@ -94,10 +106,14 @@ public class ObservateurIni implements Observer{
         
             if(i%2==0){
              g1.getLescases()[caseCoche.getLigne()][caseCoche.getColonne()].setEtat(EtatCase.X);
-             vpartie.rafraichir(g1,listeJ.get(0));
+             
+             // le deuxième paramètre = joueur qui a fait l'action , le troisième paramètre = joueur qui n'a pas fait l'action
+             vpartie.rafraichir(g1,listeJ.get(0) , listeJ.get(1));
             }else{
              g1.getLescases()[caseCoche.getLigne()][caseCoche.getColonne()].setEtat(EtatCase.O);
-             vpartie.rafraichir(g1,listeJ.get(1));    
+             
+             //le deuxième paramètre = joueur qui a fait l'action , le troisième paramètre = joueur qui n'a pas fait l'action
+             vpartie.rafraichir(g1,listeJ.get(1) , listeJ.get(0));    
             }
             i++;          
            
