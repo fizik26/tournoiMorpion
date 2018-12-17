@@ -133,7 +133,7 @@ public class VueInitialisation extends Observable{
             }
         });
         
-        JButton reinitialiser = new JButton("Réinitialiser tournoi");
+        JButton reinitialiser = new JButton("RÃ©initialiser tournoi");
         reinitialiser.setBackground(couleurfond);
         
         reinitialiser.addActionListener(new ActionListener() {

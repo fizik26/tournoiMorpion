@@ -67,10 +67,10 @@ public class VuePartie extends Observable {
     JPanel head = new JPanel();
     head.setLayout(new BoxLayout(head, BoxLayout.PAGE_AXIS));
     JLabel titre = new JLabel("Manche X");
-    JButton valider = new JButton("Valider");
+    JLabel tour = new JLabel("Tour de ");
     head.add(titre);
     head.add(new JLabel(" "));
-    head.add(valider);
+    head.add(tour);
     header.add(head);
     header.add(new JLabel("          "));
     
@@ -134,7 +134,7 @@ public class VuePartie extends Observable {
     
     // joueurNonAction = joueur qui n'a pas fait l'action
     // j = joueur ayant effectuer l'action ( le click )
-    // nous avons besoin de passer les deux joueurs pour connaître la couleur et le signe de chaque joueur lorsque nous rafraichissons la grille
+    // nous avons besoin de passer les deux joueurs pour connaï¿½tre la couleur et le signe de chaque joueur lorsque nous rafraichissons la grille
     public void rafraichir(Grille grilleJeu , Joueur j , Joueur joueurNonAction){
          pGrille.removeAll();
          Border lightgrayline = BorderFactory.createLineBorder(Color.LIGHT_GRAY,1);
@@ -159,8 +159,8 @@ public class VuePartie extends Observable {
                 JLabel casE = new JLabel("X");
                 casE.setFont(fontcochee);
                 
-                // si le signe du joueur qui a cliqué est X ( donc comme le signe de la case ), alors on assigne sa couleur au X
-                // sinon , on assigne la couleur de l'autre joueur car ça voudra dire que c'est l'autre joueur qui a le signe X et donc qui a précédemment cliqué sur cette case où il y a le X
+                // si le signe du joueur qui a cliquï¿½ est X ( donc comme le signe de la case ), alors on assigne sa couleur au X
+                // sinon , on assigne la couleur de l'autre joueur car ï¿½a voudra dire que c'est l'autre joueur qui a le signe X et donc qui a prï¿½cï¿½demment cliquï¿½ sur cette case oï¿½ il y a le X
                 if(j.getSigne().equals(Signe.X)) {
                     casE.setForeground(j.getCouleur().getcouleur());                	
                 } else {
@@ -172,8 +172,8 @@ public class VuePartie extends Observable {
                 JLabel casE = new JLabel("O");
                 casE.setFont(fontcochee);
                 
-                // si le signe du joueur qui a cliqué est O ( donc comme le signe de la case ), alors on assigne sa couleur au O
-                // sinon , on assigne la couleur de l'autre joueur car ça voudra dire que c'est l'autre joueur qui a le signe O et donc qui a précédemment cliqué sur cette case où il y a le O
+                // si le signe du joueur qui a cliquï¿½ est O ( donc comme le signe de la case ), alors on assigne sa couleur au O
+                // sinon , on assigne la couleur de l'autre joueur car ï¿½a voudra dire que c'est l'autre joueur qui a le signe O et donc qui a prï¿½cï¿½demment cliquï¿½ sur cette case oï¿½ il y a le O
                 if(j.getSigne().equals(Signe.O)) {
                     casE.setForeground(j.getCouleur().getcouleur());                	
                 } else {
@@ -189,5 +189,10 @@ public class VuePartie extends Observable {
          pGrille.revalidate();
          
          
-     }     
+     }   
+    
+    public void close(){
+         this.fenetre.dispose();
+         
+     }
 }
